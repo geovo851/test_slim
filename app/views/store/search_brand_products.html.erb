@@ -1,0 +1,22 @@
+<% provide(:title, @brand.title) %>
+
+<div class="main_bg">
+  <div class="wrap">  
+    <div class="main">
+      <h2 class="style top"><%= @brand.title %></h2>
+
+      <% if @products.empty? %>
+        <b>Products not found</b>
+      <% else %>
+
+        <div id="products">
+           <%= render partial: 'products', locals: { products: @products } %>
+        </div>
+
+        <div id="paginator", class="paginate-centre">
+          <%= paginate @products, :remote => true %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

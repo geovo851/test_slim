@@ -1,0 +1,52 @@
+<% provide(:title, "Services") %>
+<% provide(:contact, 'active') %>
+
+<div class="main_bg">
+  <div class="wrap">  
+    <div class="main">
+      <div class="service">
+        <div class="ser-main">
+          <h4>Our Services</h4>
+          <p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
+          <div class="ser-grid">
+            <div class="ser-grid-list">
+              <%= link_to image_tag('icon1.png'), store_services_path %>
+              <h5><%= link_to '24/7 customer support', store_services_path %></h5>
+              <p class="para">It is a long established fact that a reader will be distracted by the page when looking at its layout.</p>
+            </div>
+            <div class="ser-grid-list">
+              <%= link_to image_tag('icon2.png'), store_services_path %>
+              <h5><%= link_to 'hygienic branded', store_services_path %></h5>
+              <p class="para"> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+            </div>
+            <div class="ser-grid-list">
+              <%= link_to image_tag('icon3.png'), store_services_path %>
+              <h5><%= link_to 'safely dispatch', store_services_path %></h5>
+              <p class="para">It is a long established fact that a reader will be distracted by the page when looking at its layout.</p>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div class="ser-grid">
+            <div class="ser-grid-list">
+              <%= link_to image_tag('icon4.png'), store_services_path %>
+              <h5><%= link_to '100% look book', store_services_path %></h5>
+              <p class="para">It is a long established fact that a reader will be distracted by the page when looking at its layout.</p>
+            </div>
+            <div class="ser-grid-list">
+              <%= link_to image_tag('icon4.png'), store_services_path %>
+              <h5><%= link_to 'authentic products', store_services_path %></h5>
+              <p class="para"> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+            </div>
+            <div class="ser-grid-list">
+              <%= link_to image_tag('icon5.png'), store_services_path %>
+              <h5><%= link_to '100% guarantee', store_services_path %></h5>
+              <p class="para">It is a long established fact that a reader will be distracted by the page when looking at its layout.</p>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <%= render 'shared/best_sellers' %>
+      </div>
+    </div>
+  </div>
+</div>

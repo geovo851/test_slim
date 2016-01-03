@@ -1,0 +1,61 @@
+<% provide(:title, "Order") %>
+
+<div class="wrap">
+  <div class="delivery">
+    <h2 class="style top">Order</h2>
+
+    <%= form_for @cart, url: delivery_path(@cart) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <div>
+        <%= f.label :delivary_adress %>
+        <div>
+          <%= f.text_area :delivary_adress, cols: 45, rows: 5 %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.label :phone_number %>
+        <div>
+          <%= f.text_field :phone_number, size: 15 %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.label :payment %>
+        <div>
+          <%= f.collection_select(:payment_id, @payments, 
+                      :id, :type_of_paiment, {:prompt => 'Please select payment'}) %>
+        </div>
+      </div>
+
+      <div>
+          <%= f.submit 'Buy', class: "btn_delivery"%>
+          <%= link_to 'Сancel', root_path, class: "btn_cancel" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>

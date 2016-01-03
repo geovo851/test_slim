@@ -1,0 +1,20 @@
+<div class="left_sidebar">
+  <div class="sellers">
+    <h4>Best Sellers</h4>
+    <div class="single-nav">
+      <ul>
+        <% @best_sellers.each do |b| %>
+           <li><%= link_to "#{truncate(b.product_name, length: 58)}",
+                            store_product_path(b.product_max) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="banner-wrap bottom_banner color_link">
+      <a href="#" class="main_link">
+      <figure><%= image_tag 'delivery.png' %></figure>
+      <h5><span>Free Shipping</span><br> on orders over $99.</h5><p>This offer is valid on all our store items.</p></a>
+    </div>
+  </div>
+</div>
+
+<div class="clear"></div>

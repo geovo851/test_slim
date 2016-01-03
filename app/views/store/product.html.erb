@@ -1,0 +1,66 @@
+<% provide(:title, @product.name ) %>
+
+<!-- start main -->
+<div class="main_bg">
+  <div class="wrap">  
+    <div class="main">
+  <!-- start content -->
+      <div class="single">
+      <!-- start span1_of_1 -->
+        <div class="left_content">
+          <div class="span1_of_1">
+            <!-- start product_slider -->
+            <%= render 'view_product' %>
+            <!-- end product_slider -->
+          </div>
+          <!-- start span1_of_1 -->
+          <div class="span1_of_1_des">
+            <div class="desc1">
+              <h3><%= @product.name %></h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <h5>$<%= @product.price %></h5>
+              <div class="available">
+                <h4>Available Options :</h4>
+                <ul>
+                  <%= form_for @products_order do |f| %>
+                    <li>Color: <%= f.collection_select(:color_id, @colors, 
+                          :id, :title, {selected: @colors[0]}, class: 'select-color') %>
+                    </li>
+                    <li>Size: <%= f.collection_select(:size_id, @sizes, 
+                                      :id, :title, {selected: @sizes[0]}) %>
+                    </li>
+                    <%= hidden_field_tag(:product_id, @product.id) %>
+                    <%= hidden_field_tag(:price, @product.price) %>
+                    <div class="btn_add_cart">
+                      <%= f.submit 'Add to cart', class: 'btn_add_cart' %>
+                    </div>
+                  <% end %>
+                </ul>
+                <div class="clear"></div>
+              </div>
+              <div class="share-desc">
+                <div class="share">
+                  <h4>Share Product :</h4>
+                  <ul class="share_nav">
+                    <li><a href="#"><%= image_tag 'facebook.png', title: 'facebook' %></a></li>
+                    <li><a href="#"><%= image_tag 'twitter.png', title: 'Twiiter' %></a></li>
+                    <li><a href="#"><%= image_tag 'rss.png', title: 'Rss' %></a></li>
+                    <li><a href="#"><%= image_tag 'gpluse.png', title: 'Google+'%></a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <!-- start tabs -->
+          <%= render 'tabs_product' %>
+          <!-- end tabs -->
+        </div>
+          <!-- start sidebar -->
+        <%= render 'shared/best_sellers' %>
+      </div> 
+  <!-- end content -->
+    </div>
+  </div>
+</div> 

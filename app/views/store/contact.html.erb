@@ -1,0 +1,24 @@
+<% provide(:title, "Contact Us") %>
+<% provide(:contact, 'active') %>
+
+<div class="main_bg">
+  <div class="wrap">  
+    <div class="main">
+      <div class="contact">
+        <div class="contact_info">
+          <h2>get in touch</h2>
+          <div class="map">
+            <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2565.543156058128!2d36.179335951227806!3d49.98242542875714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDnCsDU4JzU2LjciTiAzNsKwMTAnNTMuNSJF!5e0!3m2!1sru!2sua!4v1445878938533" style="border:0" allowfullscreen></iframe>
+            <br>
+            <small><a href="https://www.google.com.ua/maps/place/49%C2%B058'56.7%22N+36%C2%B010'53.5%22E/@49.9824254,36.179336,17z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0?hl=en" style="color:#777777;text-align:left;font-size:13px;font-family: 'Source Sans Pro', sans-serif;">View Larger Map</a></small>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h2>Contact Us</h2>
+          <%= render partial: 'messages/form', locals: { message: @message } %>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>

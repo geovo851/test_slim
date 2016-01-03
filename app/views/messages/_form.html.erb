@@ -1,0 +1,22 @@
+<%= form_for message do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div>
+    <%= f.label :name, 'Name*' %>
+    <%= f.text_field :name, size: 22, class: "cont" %>
+  </div>
+
+  <div>
+    <%= f.label :sender, 'E-mail*' %>
+    <%= f.text_field :sender, size: 22, class: "cont"%>
+  </div>
+
+  <div>
+    <%= f.label :body, 'Subject*' %>
+    <%= f.text_area :body, cols: 10, rows: 15 %>
+  </div>
+
+  <div>
+    <%= f.submit 'Send' %>
+  </div>
+<% end %>

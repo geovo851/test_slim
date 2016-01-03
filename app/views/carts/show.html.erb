@@ -1,0 +1,12 @@
+<h1>Cart</h1>
+<p><%= @cart.id %></p>
+
+<% @cart.products_orders.each do |p| %>
+  <tr>
+    <td><%= p.product.name if p.product %></td>
+    <td><%= p.quantity %></td>
+    <td><%= p.price %></td>
+  </tr>
+<% end %>
+
+<h3><%= link_to 'back', carts_path %></h3>

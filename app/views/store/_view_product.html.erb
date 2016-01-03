@@ -1,0 +1,83 @@
+<div class="product-view">
+  <div class="product-essential">
+    <div class="product-img-box">
+
+      <% if @product.photos.count > 0 %>
+        <div class="more-views" style="float:left;">
+          <div class="more-views-container">
+            <ul>
+
+              <% @product.photos.each do |photo| %>
+                <li>
+                  <a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
+                  <img src="" src_main=""  title="" alt="" /></a>
+                </li>
+              <% end %>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-image"> 
+          <a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="" title="Women Shorts" alt="Women Shorts">
+            <%= image_tag @product.photos[0].orig %>
+          </a>
+        </div>
+
+        <%= javascript_include_tag 'prodView.js', 'data-turbolinks-track' => false %>
+
+        <script type="text/javascript">
+          var images = {
+            main_orig: "<%= raw asset_url(@product.photos[0].orig) %>",
+            main_main: "<%= raw asset_url(@product.photos[0].orig) %>",
+            main_thumb: "<%= raw asset_url(@product.photos[0].small) %>",
+
+            gallery: '"gallery":{'
+          };
+          var i = 0;
+          <% @product.photos.each do |photo| %>
+            comma = (i == 0) ? '' : ', ';
+            images.gallery += comma + '"item_'+ i + '":{"orig":"'+'<%= raw asset_url(photo.orig) %>';
+            images.gallery += '","main":"'+'<%= raw asset_url(photo.large) %>';
+            images.gallery += '", "thumb":"'+'<%= raw asset_url(photo.small) %>' + '","label":""}';
+            i++;
+          <% end %>
+
+          var prodGallery = jQblvg.parseJSON('{"prod_1":{"main":{"orig":"' + images.main_orig + '","main":"' + images.main_main + '","thumb":"'+ images.main_thumb +'","label":""},'+ images.gallery + '},"type":"simple","video":false}}'),
+              gallery_elmnt = jQblvg('.product-img-box'),
+              galleryObj = new Object(),
+              gallery_conf = new Object();
+
+          gallery_conf.moreviewitem = '<a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt=""><img src="" src_main="" width="64" height="85" title="" alt="" /></a>';
+          gallery_conf.animspeed = 200;
+
+          jQblvg(document).ready(function() {
+            galleryObj[1] = new prodViewGalleryForm(prodGallery, 'prod_1', gallery_elmnt, gallery_conf, '.product-image', '.more-views', 'http:');
+            jQblvg('.product-image .cs-fancybox-thumbs').absoluteClick();
+            jQblvg('.cs-fancybox-thumbs').fancybox({ prevEffect: 'none',
+                                                     nextEffect: 'none',
+                                                     closeBtn: true,
+                                                     arrows: true,
+                                                     nextClick: true,
+                                                     helpers: {
+                                                       thumbs: {
+                                                         width: 64,
+                                                         height: 85,
+                                                         position: 'bottom'
+                                                       }
+                                                     }
+                                                    });
+            jQblvg('#wrap').css('z-index', '100');
+            jQblvg('.more-views-container').elScroll({type: 'vertical', elqty: 4, btn_pos: 'border', scroll_speed: 400 });
+          });
+
+          function initGallery(a,b,element) {
+              galleryObj[a] = new prodViewGalleryForm(prods, b, gallery_elmnt, gallery_conf, '.product-image', '.more-views', '');
+          };
+        </script>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
