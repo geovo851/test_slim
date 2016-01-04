@@ -1,0 +1,16 @@
+.left_sidebar
+  .sellers
+    h4 Best Sellers
+    .single-nav
+      ul
+        - @best_sellers.each do |b|
+           li = link_to "#{truncate(b.product_name, length: 58)}", store_product_path(b.product_max)
+    .banner-wrap.bottom_banner.color_link
+      a href="#" class="main_link"
+        figure = image_tag 'delivery.png'
+        h5
+          span Free Shipping
+          br
+          | on orders over $99.
+        p This offer is valid on all our store items.
+.clear

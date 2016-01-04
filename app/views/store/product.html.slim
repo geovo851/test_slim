@@ -1,0 +1,41 @@
+- provide(:title, @product.name )
+
+.main_bg
+  .wrap
+    .main
+      .single
+        .left_content
+          .span1_of_1
+            = render 'view_product'
+          .span1_of_1_des
+            .desc1
+              h3 = @product.name
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              h5 $#{@product.price}
+              .available
+                h4 Available Options :
+                ul
+                  = form_for @products_order do |f|
+                    li Color: #{f.collection_select(:color_id, @colors, :id, :title, {selected: @colors[0]}, class: 'select-color')}
+                    li Size: #{f.collection_select(:size_id, @sizes, :id, :title, {selected: @sizes[0]})}
+                    = hidden_field_tag(:product_id, @product.id)
+                    = hidden_field_tag(:price, @product.price)
+                    .btn_add_cart
+                      = f.submit 'Add to cart', class: 'btn_add_cart'
+                .clear
+              .share-desc
+                .share
+                  h4 Share Product :
+                  ul.share_nav
+                    li
+                      a href="#" = image_tag 'facebook.png', title: 'facebook'
+                    li
+                      a href="#" = image_tag 'twitter.png', title: 'Twiiter'
+                    li
+                      a href="#" = image_tag 'rss.png', title: 'Rss'
+                    li
+                      a href="#" = image_tag 'gpluse.png', title: 'Google+'
+                .clear
+          .clear
+          = render 'tabs_product'
+        = render 'shared/best_sellers'

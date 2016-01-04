@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title "#{yield(:title)} | Clothes store"
+    - if controller.controller_name == 'admin'
+      = stylesheet_link_tag    'active_admin.scss', media: 'all', 'data-turbolinks-track' => true
+    - else
+      = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    == render 'shared/header'
+    - flash.each do |key, value|
+      = content_tag(:div, value, class: "wrap alert #{bootstrap_class_for(key)} flash")
+    == yield
+    == render 'shared/footer'

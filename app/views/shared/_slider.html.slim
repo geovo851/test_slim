@@ -1,0 +1,15 @@
+#da-slider.da-slider
+  - @slider_product.each do |c|
+    .da-slide
+      h2 = c.title
+      p = c.body
+      = link_to 'Shop now', store_product_path(c.product_id), class: "da-link"
+      .da-img = image_tag c.photo
+  nav.da-arrows
+    span.da-arrows-prev
+    span.da-arrows-next
+
+javascript:
+  $(function() {
+    $('#da-slider').cslider();
+  });

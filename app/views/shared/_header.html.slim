@@ -1,0 +1,93 @@
+.header_bg
+  .wrap
+    .header
+      .logo
+        = link_to image_tag("logo.png"), root_path
+      .h_icon
+        ul class="icon1 sub-icon1 #{@cart.products_orders.empty? ? 'header-cart-empty' : 'header-cart-full'}"
+          li
+            a class="active-icon c1" href="#"
+              i#header-cart-sum = "$#{@sum_in_cart == 0 ? 0 : @sum_in_cart}"
+            ul class="sub-icon1 list"
+              li
+                h3 = "shopping cart#{@cart.products_orders.empty? ? ' empty' : ''}"
+                a href=""
+              li
+                - unless @cart.products_orders.empty?
+                  .header-cart
+                    table
+                      thead
+                        tr
+                          th Product
+                          th Color
+                          th Size
+                          th Quantity
+                          th Price
+                          th Sum
+                          th
+                      tbody
+                        - @cart.products_orders.each do |p|
+                          tr
+                            td = p.product.name if p.product
+                            td = p.color.title
+                            td = p.size.title
+                            td = text_field_tag :quantity, p.quantity, size: 1, class: 'quantity', id: p.id
+                            td = p.price
+                            td = p.quantity * p.price
+                            td = button_to 'x', products_order_path(p), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-xs"
+                    p 
+                      | Total sum: 
+                      span#cart-totalsum = @cart.total_sum
+                  = button_to 'Buy', edit_delivery_path(@cart), method: :get, class: "btn_buy_cart"
+
+      .h_search
+        = form_tag store_search_path do
+          = text_field_tag :search_text, params[:search_text]
+          = submit_tag ''
+      .clear
+.header_btm
+  .wrap
+    .header_sub
+      .h_menu
+        ul
+          li class="#{yield(:products)}"
+            = link_to "Home", root_path
+          | |
+          - header_categories.each do |c|
+            - category_id = "category_#{c.id}".to_sym
+            li
+              = link_to c.title, store_search_products_path(c.id), class: "#{yield(category_id)}"
+            | |
+          li = link_to 'services', store_services_path
+          | |
+          li = link_to 'Contact us', store_contact_path
+      .clear
+    .clear
+
+javascript:
+  $(document).ready(function() {
+    $(".quantity").change(function() {
+      var quantity = $(this).val();
+      var price = parseFloat($(this).parent().next().text());
+      var el_sum = $(this).parent().next().next();
+      var el_totalsum = $("#cart-totalsum");
+      var total_sum = parseFloat(el_totalsum.text()) - parseFloat(el_sum.text());
+
+      if (quantity <= 0) {
+        quantity = 1;
+        $(this).val(quantity);
+      }
+
+      var sum = (price * quantity).toFixed(2);
+
+      el_sum.text(sum);
+      total_sum = (total_sum + parseFloat(sum)).toFixed(2);
+      el_totalsum.text(total_sum);
+      $("#header-cart-sum").text("$" + total_sum);
+      $.ajax({
+             url: "/store/cart/update_quantity",
+             type: "POST",
+             data: {id: $(this).attr('id'), quantity: quantity, total_sum: total_sum}
+      });
+    });
+  });

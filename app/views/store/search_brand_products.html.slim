@@ -1,0 +1,13 @@
+- provide(:title, @brand.title)
+
+.main_bg
+  .wrap
+    .main
+      h2.style.top = @brand.title
+      - if @products.empty?
+        b Products not found
+      - else
+        #products
+           = render partial: 'products', locals: { products: @products }
+        #paginator.paginate-centre
+          = paginate @products, remote: true

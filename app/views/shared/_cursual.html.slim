@@ -1,0 +1,25 @@
+.wrap
+  #owl-demo.owl-carousel
+    - @carousel_products.each do |c|
+      div.item onclick="location.href='#{store_product_path(c.product_id)}';"
+        .cau_left
+          = image_tag c.photo, class: "lazyOwl"
+        .cau_left
+          h4 = link_to "#{c.title}", store_product_path(c.product_id)
+          = link_to "shop", store_product_path(c.product_id), class: 'btn'
+
+javascript:
+  $(document).ready(function() {
+
+    $("#owl-demo").owlCarousel({
+      items : 4,
+      lazyLoad : true,
+      autoPlay : true,
+      navigation : true,
+    navigationText : ["",""],
+    rewindNav : false,
+    scrollPerPage : false,
+    pagination : false,
+    paginationNumbers: false,
+    });
+  });
