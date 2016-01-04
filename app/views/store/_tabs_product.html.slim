@@ -1,0 +1,31 @@
+section.tabs
+  input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked"
+  label for="tab-1" class="tab-label-1" Product Description
+
+  input id="tab-2" type="radio" name="radio-set" class="tab-selector-2"
+  label for="tab-2" class="tab-label-2" Brand&#39;s Description
+
+  input id="tab-3" type="radio" name="radio-set" class="tab-selector-3"
+  label for="tab-3" class="tab-label-3" Delivery info
+
+  .clear-shadow
+
+  .content
+    .content-1
+      p.para.top = sanitize(@product.description)
+      .clear
+    .content-2
+      p.para = sanitize(@product.brand.description)
+    .content-3
+      p.para.top
+        |
+        span LOREM IPSUM 
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      ul
+        li Delivery
+        li Delivery
+        li Delivery
+        li Delivery
+        li Delivery
+        li Delivery
+      .clear

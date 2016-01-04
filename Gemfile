@@ -63,3 +63,5 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'activeadmin', '1.0.0.pre1'
+
+gem 'slim-rails'

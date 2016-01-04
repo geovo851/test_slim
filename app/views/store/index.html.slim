@@ -1,0 +1,21 @@
+=provide(:products, 'active')
+=provide(:title, 'Home')
+
+== render 'shared/slider'
+== render 'shared/cursual'
+
+.main_bg1
+  .wrap
+    .main1
+      h2 featured products
+
+.main_bg
+  .wrap
+    .main
+      - if @products.empty?
+        b Products not found
+      - else
+        - @products.each do |p|
+          = product_html p.product_max, p.product_photo, 
+                         p.product_name, p.product_price
+        = clear_html
