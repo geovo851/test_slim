@@ -1,0 +1,52 @@
+.product-view
+  .product-essential
+    .product-img-box
+      - if @product.photos.count > 0
+        .more-views style="float:left;"
+          .more-views-container
+            ul
+              - @product.photos.each do |photo|
+                li
+                  a.cs-fancybox-thumbs data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt=""
+                    img src="" src_main=""  title="" alt=""
+
+        .product-image
+          a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="" title="Women Shorts" alt="Women Shorts"
+            = image_tag @product.photos[0].orig
+
+        = javascript_include_tag 'prodView.js', 'data-turbolinks-track' => false
+
+        javascript:
+          var photos_product = "#{photos_product(@product)}";
+          var prodGallery = jQblvg.parseJSON(photos_product);
+
+              var gallery_elmnt = jQblvg('.product-img-box'),
+              galleryObj = new Object(),
+              gallery_conf = new Object();
+
+          gallery_conf.moreviewitem = '<a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt=""><img src="" src_main="" width="64" height="85" title="" alt="" /></a>';
+          gallery_conf.animspeed = 200;
+
+          jQblvg(document).ready(function() {
+            galleryObj[1] = new prodViewGalleryForm(prodGallery, 'prod_1', gallery_elmnt, gallery_conf, '.product-image', '.more-views', 'http:');
+            jQblvg('.product-image .cs-fancybox-thumbs').absoluteClick();
+            jQblvg('.cs-fancybox-thumbs').fancybox({ prevEffect: 'none',
+                                                     nextEffect: 'none',
+                                                     closeBtn: true,
+                                                     arrows: true,
+                                                     nextClick: true,
+                                                     helpers: {
+                                                       thumbs: {
+                                                         width: 64,
+                                                         height: 85,
+                                                         position: 'bottom'
+                                                       }
+                                                     }
+                                                    });
+            jQblvg('#wrap').css('z-index', '100');
+            jQblvg('.more-views-container').elScroll({type: 'vertical', elqty: 4, btn_pos: 'border', scroll_speed: 400 });
+          });
+
+          function initGallery(a,b,element) {
+              galleryObj[a] = new prodViewGalleryForm(prods, b, gallery_elmnt, gallery_conf, '.product-image', '.more-views', '');
+          };

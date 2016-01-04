@@ -27,7 +27,28 @@ module StoreHelper
 
   def clear_html
     if @i > 0 && @i != 3
-       '<div class="clear"></div></div>'.html_safe
+      '<div class="clear"></div></div>'.html_safe
     end
+  end
+
+  def photos_product product
+    main_orig = "#{raw asset_url(product.photos[0].orig)}"
+    main_main = "#{raw asset_url(product.photos[0].orig)}"
+    main_thumb = "#{raw asset_url(product.photos[0].small)}"
+
+    gallery = '\"gallery\":{'
+    i = 0
+    product.photos.each do |photo|
+      comma = (i == 0) ? '' : ', '
+      gallery += comma + '\"item_'+ i.to_s + '\":{\"orig\":\"'+ raw(asset_url(photo.orig))
+      gallery += '\",\"main\":\"'+ raw(asset_url(photo.large))
+      gallery += '\", \"thumb\":\"'+ raw(asset_url(photo.small)) + '\",\"label\":\"\"}'
+      i +=1
+    end
+    photos = '{\"prod_1\":{\"main\":{\"orig\":\"' + main_orig + 
+        '\",\"main\":\"' + main_main + '\",\"thumb\":\"'+ 
+        main_thumb +'\",\"label\":\"\"},'+ gallery +
+        '},\"type\":\"simple\",\"video\":false}}'
+    photos.to_s.html_safe
   end
 end
